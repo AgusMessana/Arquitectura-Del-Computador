@@ -1,0 +1,3 @@
+Es necesario usar GDB para ver los resultados en 32 bits.
+Si sólo usáramos echo $? nos devolvería un reusltado en 8 bits, con lo que perderíamos información del resultado final.
+Es decir, echo tomal el byte bajo (AL) del EAX

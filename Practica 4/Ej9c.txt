@@ -1,0 +1,6 @@
+Etiqueta     Dirección de memoria     Valor almacenado
+a            0x0000000000404028       0x6F48 ('H', 'o')
+b            0x000000000040402a       0x6C ('l')
+b+1          0x000000000040402b       0x61 ('a')
+c            0x000000000040402c       0x3FC00000
+str          0x0000000000404030       "Hola mundo\n"

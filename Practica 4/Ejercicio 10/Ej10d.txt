@@ -1,0 +1,2 @@
+Luego del call printf se imprime:
+Imprime e\n

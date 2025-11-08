@@ -1,0 +1,17 @@
+USamos r12 en lugar de rcx por lo visto en el inciso c). El registro rcx puede ser usado por printf, lo que ocasionaría que perdamos la cantidad de iteraciones que debemos realizar. Esto se debe a que rcx es un registro caller-saved y r12 es calee-saved.
+El cambio que se debería hacer para usar el registro rcx es guardar el valor en la pila y restaurarlo luego del printf, de la siguiente manera:
+bucle:
+  movq $str3, %rdi
+  movq %r12, %rsi
+  movq (%rbx, %r12, 8), %rdx
+  xorl %eax, %eax
+
+  # Inicio del cambio
+  pushq %rcx
+  call printf
+  popq %rcx
+  # Fin del cambio
+  
+  incq %r12
+  cmpq %r12, -8(%rbp)
+  ja bucle

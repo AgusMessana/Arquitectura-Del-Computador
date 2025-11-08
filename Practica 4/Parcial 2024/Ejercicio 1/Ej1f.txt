@@ -1,0 +1,2 @@
+El registro rbp es el punto de referncia para el espacio de trabajo. De esta forma, las variables fijas siempre están "abajo" del punto de referencia, y los argumentos estarían "arriba" del punto fijo. De no estar, se debería calcular todo con respecto a rsp, el cual va variando a medida que el programa corre.
+Lo guardamos pues al ser callee-saved, al finalizar toda función, el registro debe quedar como lo encontró la función. Por ende, el push/pop son para guardar y restaurar el punto de referncia, y mov es para establecer el propio punto de referencia de la función

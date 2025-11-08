@@ -1,0 +1,2 @@
+La instrucción xorl %r12d, %r12d pone el registro %r12 en 0. Esto debido a que en x86-64 cualquier operación que escribe en un registro de 32 bits automáticamente pone en cero los 32 bits de arriba del registro de 64 bits.
+Una instrucción equivalente sería movl $0, %r12d.

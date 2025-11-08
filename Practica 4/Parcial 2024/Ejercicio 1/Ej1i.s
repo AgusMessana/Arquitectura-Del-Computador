@@ -1,14 +1,5 @@
-/*
-Completar las líneas de puntos en las instrucciones para que el programa imprima lo siguiente cuando se compile y ejecute de la forma indicada: ./a.out Hola mundo
-Estoy en foo!
-La cantidad de argumentos es 3
-El argumento 0 es ./a.out
-El argumento 1 es Hola
-El argumento 2 es mundo
-*/
-
 .data
-str1: .asciz "Estoy en foo!\n"
+str1: .asciz "Estoy en foo! La cantidad de argumentos es %ld\n"
 str2: .asciz "La cantidad de argumentos es %d\n"
 str3: .asciz "El argumento %d es %s\n"
 
@@ -20,6 +11,9 @@ main:
   subq $16, %rsp
   movq %rdi, -8(%rbp)         # Completado
   movq %rsi, -16(%rbp)        # Completado
+
+  movq -8(%rbp),  %rdi
+
   call foo
   leaq str2, %rdi             # Completado
   movq -8(%rbp), %rsi         # Completado
@@ -43,7 +37,11 @@ bucle:
 foo:
   pushq %rbp
   movq %rsp, %rbp
+
+  pushq %rdi
   leaq str1, %rdi             # Completado
+  popq %rsi
+
   xorl %eax, %eax             # Completado
   call printf
   movq %rbp, %rsp             # Completado

@@ -1,0 +1,3 @@
+No es recomendable usar la instrucción loop pues call printf está dentro del bucle.
+La instrucción loop bucle decrementa el registro %rcx y salta al bucle si %rcx no es cero. La instrucción loop utiliza el registro %rcx como contador, ningún otro, como debería ser %r12 en nuestro caso.
+La instrucción printf divide los registors es seguros y peligrosos. EL registro %rcx es peligroso, se usa para pasar el argumento 4 a las funciones. Entonces, printf puede sobreescribir %rcx, haciendo que el bucle no funcione como debería.

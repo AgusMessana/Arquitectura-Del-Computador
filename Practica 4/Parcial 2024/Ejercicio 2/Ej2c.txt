@@ -1,0 +1,1 @@
+El valor de retorno de la función es el almacenado en el registro rax antes de la llamada ret. Luego, el valor de retorno al fianlizar la función es 0x0000000011220110

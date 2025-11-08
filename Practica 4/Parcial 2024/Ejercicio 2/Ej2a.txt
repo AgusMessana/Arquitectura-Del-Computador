@@ -1,0 +1,49 @@
+.data
+a: .byte 1, 2, 3, 4, 5
+b: .quad 0x1122334455667788
+str: .asciz "Hola mundo\n"
+
+.text
+.global main
+main:
+  movq b, %rax                  # rax = ..........
+  movq $a, %rbx                 # rbx = ..........
+  movl $4, %ecx                 # rcx = ..........
+  movb (%rbx, %rcx, 1), %ah     # rax = ..........
+  movl 0x5(%rbx), %eax          # rax = ..........
+  lea b, %rbx                   # rbx = ..........
+  movl b(,%rcx,1), %eax         # rax = ..........
+  mulb %cl                      # rax = ..........
+  ret
+
+Contenido         Dirección         Etiqueta
+--------------------------------------------
+...
+...
+Heap
+'\0'              0x404040
+'\n'              0x40403F
+'o'               0x40403E
+'d'               0x40403D
+'n'               0x40403C
+'u'               0x40403B
+'m'               0x40403A
+' '               0x404039
+'a'               0x404038
+'l'               0x404037
+'o'               0x404036
+'H'               0x404035          str:
+0x11              0x404034
+0x22              0x404033
+0x33              0x404032
+0x44              0x404031
+0x55              0x404030
+0x66              0x40402F
+0x77              0x40402E
+0x88              0x40402D          b:
+0x05              0x40402C
+0x04              0x40402B
+0x03              0x40402A
+0x02              0x404029
+0x01              0x404028          a:
+.text

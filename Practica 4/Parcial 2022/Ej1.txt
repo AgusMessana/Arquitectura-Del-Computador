@@ -1,0 +1,18 @@
+A. movq %rax, $a
+El destino es un valor inmediato. 
+El destino de la instrucción mov tiene que ser un registro o una dirección de memoria, y en este caso se está tomando como destino un valor inmediato (la dirección de a en este caso).
+
+B. movq a, b
+Moviemiento directo de memoria a memoria.
+Esta arquitectura no permite mover datos de una ubicación de memoria a otra. Para hacer esta operación se deberían usar registros como intermediarios.
+
+C. movq %rax, 0x4000
+Segmentation fault.
+Los sistemas operativos protegen las direcciones de memorias bajas. Esta área se reserva para el kernel y marcada como no-escribible para los programas de usuario. Al intentar escribir allí se detecta como violación de segmento.
+
+D. movq %rax, $0x4000
+Mismo error que en el caso A.
+
+E. movq 0x404028, %eax
+Desajuste de tamaño entre instrucción y registro.
+La q de movq especifica que la operación es de 64 bits, y %eax es un registro de 32 bits.

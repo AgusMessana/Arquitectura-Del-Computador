@@ -1,0 +1,18 @@
+#include <stdio.h>
+int fun(){
+  static int count = 5;
+  count++;
+  return count;
+}
+
+int main(){
+  printf("%d\n", fun());
+  printf("%d\n", fun());
+  return 0;
+}
+
+El programa imprime:
+6
+7
+
+Esto se deb a que como count es un static int, la primera vez que se entra a la función fun se crea la variable count y se almacena en el .data. Luego se aumenta su valor en 1. Al entrar por segunda vez, se ignora la creación de count porque ya está creada (esto lo hace el static), y como su valor almacenado era 6, se incrementa en 1 y pasa a avaler 7.

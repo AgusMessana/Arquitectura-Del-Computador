@@ -1,0 +1,3 @@
+No usamos subq $20, %rsp ya que se necesita que el puntero de la pila esté alineado a un límite de 16 bytes antes de ejecutar call.
+La función determinante llama a call printf que falla si la pila no está alineada a 16 bytes.
+Como luego de que main ejecute determinante y determinante haga el pushq la pila queda alineada a 16 bytes, si restamos 20 se desalinea, por ello debemos restar 32.

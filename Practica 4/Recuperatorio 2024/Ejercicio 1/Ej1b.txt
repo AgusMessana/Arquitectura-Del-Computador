@@ -1,0 +1,24 @@
+Contenido          Dirección        Referencia
+---------------------------------------------
+...               
+...
+Heap
+...
+...
+0x00                                 Byte 4 de a[3]
+0x00                                 Byte 3 de a[3]
+0x00                                 Byte 2 de a[3]
+0x04               0x404034          Byte 1 de a[3]
+0x00                                 Byte 4 de a[2]
+0x00                                 Byte 3 de a[2]
+0x00                                 Byte 2 de a[2]
+0x10               0x404030          Byte 1 de a[2]
+0x11                                 Byte 4 de a[1]
+0x22                                 Byte 3 de a[1]
+0x33                                 Byte 2 de a[1]
+0x44               0x40402C          Byte 1 de a[1]
+0xAA                                 Byte 4 de a[0]
+0xAA                                 Byte 3 de a[0]
+0xAA                                 Byte 2 de a[0]
+0xAA               0x404028          Byte 1 de a[0]
+.text

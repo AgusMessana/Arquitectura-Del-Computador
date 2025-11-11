@@ -1,0 +1,30 @@
+Dirección                 Referencia
+--------------------------------------------------------------------------
+...
+0x7fffffffeb48            rsp inicial
+
+0x7fffffffeb40            Dir. de retorno a libc
+0x7fffffffeb3C            Varaible en -4(%rbp) (a[0] = 0xAAAAAAAA)
+0x7fffffffeb38            Varaible en -8(%rbp) (a[1] = 0x11223344)
+0x7fffffffeb34            Varaible en -12(%rbp) (a[2] = 16)
+0x7fffffffeb30            Varaible en -16(%rbp) (a[3] = 4)
+0x7fffffffeb2C            Varaible en -20(%rbp) (r: determinante)
+
+0x7fffffffeb28            Espacio libre en main / -24(%rbp)
+0x7fffffffeb24            Espacio libre en main / -28(%rbp)
+0x7fffffffeb20            Espacio libre en main / -32(%rbp)         
+
+0x7fffffffeb18            Dir. de retorno a main (puesto por determinante)
+0x7fffffffeb10            %rbp de main (guardado)
+0x7fffffffeb0C            Copia de 'a' / -4(%rbp)
+0x7fffffffeb08            Copia de 'b' / -8(%rbp)
+0x7fffffffeb04            Copia de 'c' / -12(%rbp)
+0x7fffffffeb00            Copia de 'd' / -16(%rbp)
+0x7fffffffaefC            Copia de 'r' / -20(%rbp)
+
+0x7fffffffaef8            Espacio libre en determinante / -24(%rbp)
+0x7fffffffaef4            Espacio libre en determinante / -28(%rbp)
+0x7fffffffaef0            Espacio libre en determinante / -32(%rbp)
+
+0x7fffffffaee8            Dir. de retorno a determinante
+...

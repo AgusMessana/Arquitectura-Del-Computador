@@ -1,0 +1,2 @@
+El resultado será incorrecto porque se produce un desbordamiento al hacer los cálculos con aritmética de 32 bits ya que se truncan los resultados.
+Por lo tanto los resultados obtenidos con imull son incorrectos, la resta por ende será incorrecta, y finalmente el resultado también lo será.

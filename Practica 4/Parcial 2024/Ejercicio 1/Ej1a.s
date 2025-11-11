@@ -1,12 +1,3 @@
-/*
-Completar las líneas de puntos en las instrucciones para que el programa imprima lo siguiente cuando se compile y ejecute de la forma indicada: ./a.out Hola mundo
-Estoy en foo!
-La cantidad de argumentos es 3
-El argumento 0 es ./a.out
-El argumento 1 es Hola
-El argumento 2 es mundo
-*/
-
 .data
 str1: .asciz "Estoy en foo!\n"
 str2: .asciz "La cantidad de argumentos es %d\n"

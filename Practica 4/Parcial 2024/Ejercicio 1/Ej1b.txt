@@ -1,0 +1,23 @@
+rsp                   rbp                   Referencia
+--------------------------------------------------------------------------
+...
+0x7fffffffe078        0x401190              Valores iniciales
+
+--main--
+0x7fffffffe070        0x401190              Viejo %rbp guardado
+0x7fffffffe070        0x7fffffffe070        Nuevo frame main
+0x7fffffffe068        0x7fffffffe070        Variable en -8(%rbp)
+0x7fffffffe060        0x7fffffffe070        Variable en -16(%rbp)
+
+--foo--
+0x7fffffffe058        0x7fffffffe070        Dir. de retorno a main
+0x7fffffffe050        0x7fffffffe070        Viejo %rbp guardado
+0x7fffffffe050        0x7fffffffe050        Frame activo en foo
+0x7fffffffe058        0x7fffffffe070        Restaurar rbp anterior
+0x7fffffffe060        0x7fffffffe070        Ret. a main
+
+--main--
+0x7fffffffe060        0x7fffffffe070        Ejecución de bucle
+0x7fffffffe070        0x7fffffffe070        Post movq
+0x7fffffffe078        0x401190              Restaurar rbp original
+...

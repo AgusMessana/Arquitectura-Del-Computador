@@ -50,7 +50,7 @@ main:
   movl $4, %esi
   call cuadrado_promedio
 
-  subq $8, %rsp
+  # subq $8, %rsp
   leaq str, %rdi
   movl $1, %eax
   call printf
@@ -59,3 +59,4 @@ main:
   xorl %eax, %eax
   leave
   ret
+  

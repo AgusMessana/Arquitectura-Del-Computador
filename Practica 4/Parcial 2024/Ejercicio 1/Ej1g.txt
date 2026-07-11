@@ -1,3 +1,0 @@
-La instrucción subq $16, %rsp reserva 16 bytes de espacio en la pila para usarlos como "variables locales".
-Usamos 8 bytes para guardar una copia de argc (en -8(%rbp))
-Y 8 bytes para guardar una copia de argv (en -16(%rbp))

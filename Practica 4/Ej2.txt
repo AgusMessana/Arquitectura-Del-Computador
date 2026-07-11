@@ -1,3 +1,0 @@
-Una de las formas de obtener el valor de retorno de un programa puede ser:
-1: usando "echo $?" en la terminal después de ejecutar el programa.
-2: usando un return desde el main, o un exit como alternativa.

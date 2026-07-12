@@ -1,0 +1,2 @@
+Una de las formas es escribiendo en la terminal el comando "echo $?"
+La otra forma es usando el depurador GBD para analizar que pasa registro por registro.

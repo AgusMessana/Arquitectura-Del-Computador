@@ -1,0 +1,9 @@
+a) Verdadero. 16 = 0x10, los múltiplos de 16 terminan en 0 en hexadecimal, y 0x7fffffffeb40 termina en 0. Luego es divisible por 16 y por ende está alineada.
+
+b) Verdadero. El AND con -16 (0x...F0) pone a cero los 4 bits menos significativos de rsp, forzando que sea múltiplo de 16, o sea alineado.
+
+c) Falso. pushq %rax hace dos cosas: subq $8, %rsp y movq %rax, (%rsp). La instrucción movq %rax, -8(%rsp) escribe en la dirección correcta pero NO modifica rsp (no hace el subq). Entonces no son equivalentes.
+
+d) Falso. movss no acepta registros generales como operando (espera xmm o memoria). Por ende, es inválido pasar como argumento un registro como %rax.
+
+e) Falso. addps = add + p + s. La p = packed (vector, varios datos), la s = single precision (float). Entonces addps suma vectores de floats de precisión simple, NO enteros.

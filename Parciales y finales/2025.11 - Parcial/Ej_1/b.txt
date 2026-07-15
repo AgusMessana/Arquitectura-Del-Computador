@@ -1,0 +1,16 @@
+Dirección          Contenido          rsp             rbp
+─────────          ─────────          ───             ───
+0x7fffffffeb30     0x7fffffffebd0     0x7fffffffeb30  0x7fffffffeb30
+0x7fffffffeb28     8                  0x7fffffffeb28  0x7fffffffeb30
+0x7fffffffeb20     7                  0x7fffffffeb20  0x7fffffffeb30
+0x7fffffffeb18     retorno a main     0x7fffffffeb18  0x7fffffffeb30
+0x7fffffffeb10     0x7fffffffeb30     0x7fffffffeb10  0x7fffffffeb10
+0x7fffffffeb0c     1
+0x7fffffffeb08     2
+0x7fffffffeb04     3
+0x7fffffffeb00     4
+0x7fffffffeafc     5
+0x7fffffffeaf8     6
+0x7fffffffeaf0     (reservado)        0x7fffffffeaf0  0x7fffffffeb10
+0x7fffffffeae8     retorno a suma     0x7fffffffeae8  0x7fffffffeb10
+0x7fffffffeae0     0x7fffffffeb10     0x7fffffffeae0  0x7fffffffeb10

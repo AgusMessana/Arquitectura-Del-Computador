@@ -1,0 +1,1 @@
+La instrucción echo $? va a imprimir el byte más bajo del rax. En este caso, imprimirá 0xEE. Como lo imprime en decimal, imprimirá 238

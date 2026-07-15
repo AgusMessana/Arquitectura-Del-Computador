@@ -1,0 +1,6 @@
+Dirección          Contenido                          Offset
+─────────          ─────────                          ──────
+0x7fffffffebb8     j (arg 8, = 8)                     24(%rbp)
+0x7fffffffebb0     i (arg 7, = 7)                     16(%rbp)
+0x7fffffffeba8     0x4011aa (dir. de retorno)         8(%rbp)
+0x7fffffffeba0     0x7fffffffebc0 (rbp guardado)      (%rbp)   ← rbp, rsp

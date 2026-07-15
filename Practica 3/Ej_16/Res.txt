@@ -1,0 +1,20 @@
+a)
+DIAGRAMA DE PILA durante la ejecución de f()
+
+Contenido                        Offset      Espacio
+─────────                        ──────      ───────
+h  (int, arg 8)                  24(%rbp)    4 bytes
+g  (int, arg 7)                  16(%rbp)    4 bytes
+dirección de retorno              8(%rbp)    8 bytes
+rbp guardado                       (%rbp)    8 bytes    ← rbp
+─── zona de variables locales (a-f, copiados de registros) ───
+a  (char)                        -4(%rbp)    1 byte
+b  (int)                         -8(%rbp)    4 bytes
+c  (char)                        -12(%rbp)   1 byte
+d  (long)                        -24(%rbp)   8 bytes
+e  (char)                        -28(%rbp)   1 byte
+f  (short)                       -32(%rbp)   2 bytes
+
+b)
+La dirección de retorno de f está almacenada en 8(%rbp).
+Verificado con GDB: x/xg $rbp+8 devolvió 0x40126d, que coincide con la dirección de retorno a main que reporta el backtrace (bt), confirmando que ahí está guardada la dirección a la que f retorna.

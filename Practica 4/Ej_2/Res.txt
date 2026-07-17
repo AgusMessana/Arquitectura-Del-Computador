@@ -1,0 +1,11 @@
+r3 contiene el valor 0x8000
+
+a) str r6, [r3, #12]
+b) strb r7, [r3], #4
+c) ldrh r5, [r3], #8
+d) ldr r12, [r3, #12]!
+
+a) Se escribe en 0x8000 + 0xC = 0x800C. Guarda los 4 bytes de r6 en esa dirección. Como es de la forma offset simple, no se modifica r3. Luego, r3 sigue conteniendo la dirección 0x8000. r3 = 0x8000.
+b) Se accede a 0x8000, guarda un byte de r7 en esa dirección, y luego se incrementa r3 en 4, por lo que r3 contiene a 0x8004. r3 = 0x8004.
+c) Se accede a 0x8004, se cargan en r5 los 2 bytes (halfword) del contenido de esa dirección, extendiendo con ceros los 16 bits altos, y luego se incrementa r3 en 8. r3 = 0x800C.
+d) Se accede a 0x801B, se cargan 4 bytes del contenido que haya en esa dirección en r12, y en r3 queda la dirección a la que se accedió. r3 = 0x8018.

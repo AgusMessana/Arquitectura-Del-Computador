@@ -1,0 +1,13 @@
+a) mov r7, #0x8c, 4
+b) mov r7, #0x42, 30
+c) mvn r7, #2
+d) mvn r7, #0x8c, 4
+
+a) Tomamos el valor 0x0000008C y lo rotamos 2*4 = 8 veces a la derecha y guardamos la instrucción en r7.
+Luego de la instrucción, nos queda r7 = 0x8C000000.
+b) Tomamos el valor 0x00000042 y lo rotamos 2*30 = 60 veces a la derecha y guardamos el valor en r7.
+Luego de la instrucción, nos queda r7 = 0x00000420.
+c) Tomamos el valor 0x00000002, en este caso no lo rotamos. Luego obtenemos el valor negado y lo guardamos en r7.
+Luego de la instrucción, r7 = 0xFFFFFFFD.
+d) Tomamos el valor 0x0000008C y lo rotamos 2*4 = 8 veces a la derecha. Nos queda 0x8C000000. Luego obtenemos el valor negado y lo guardamos en r7.
+Luego de la instrucción, r7 = 0x73FFFFFF.

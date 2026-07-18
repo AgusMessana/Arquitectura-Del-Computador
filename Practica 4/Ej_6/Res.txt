@@ -1,0 +1,17 @@
+a) 0xC0000034
+Se puede cargar en una sola instrucción sin literal pool.
+mov r0, #0xD1, 1
+
+b) 0x12340000
+No se puede cargar en una sola instrucción sin literal pool.
+
+c) 0x77777777
+Np se puede cargar en una sola instrucción sin literal pool.
+
+d) 0xFFFFFFFF
+Se puede cargar en una sola instrucción sin literal pool.
+mvn r0, #0x00
+
+e) 0xFFFFFFFE
+Se puede cargar en una sola instrucción sin literal pool.
+mvn r0, #0x1

@@ -1,0 +1,11 @@
+La explicación es que 'ldr r1, =valor' NO es una instrucción real, sino
+una PSEUDO-instrucción. El inmediato de 32 bits no viaja dentro de la
+instrucción. El ensamblador hace una de dos cosas:
+
+- Si el valor se puede expresar como byte rotado (o su NOT), lo reemplaza por un mov/mvn directo.
+- Si no (ej: 0x12abcdef), guarda la constante en un LITERAL POOL (una zona de memoria dentro del .text) y genera un 'ldr r1, [pc, #offset]' que la lee desde ahí.
+
+En este segundo caso, lo que la instrucción lleva adentro es solo un offset
+chico relativo al pc (que sí entra en la instrucción), no la constante de
+32 bits. Por eso "cabe": porque en realidad la constante está en memoria,
+no en la instrucción.

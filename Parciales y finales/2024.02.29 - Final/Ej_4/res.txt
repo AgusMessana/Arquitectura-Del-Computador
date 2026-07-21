@@ -1,0 +1,73 @@
+Se tiene un sistema de memoria virtual con paginación de dos niveles que puede direccionar un total de 2^32 bytes. El primer nivel tiene 12 bits en el primer nivel y 10 bits en el segundo nivel. Tiene 1 GB de memoria principal con páginas virtuales y físicas de 1 KB.
+
+Espacio virtual = 2^32 bytes
+Nivel 1 = 12 bits
+nivel 2 = 10 bits
+Memoria principal (física) = 1 GB = 2^30 bytes
+Páginas virtuales y físicas = 1 KB = 2^10 bytes
+
+bits de offset = log2(tamaño de páginas) = log2(2^10 bytes) = 10 bits
+bits de dirección virtual = log2(espacio virtual) = log2(2^32 bytes) = 32 bits
+bits de dirección física = log2(espacio físico) = log2(2^30 bytes) = 30 bits
+
+a) Las direcciones virtuales se componen como:
+[VPN1: 12 bits | VPN2: 10 bits | offset: 10 bits]
+Se componen de 32 bits, 22 bits + 10 bits de offset.
+
+b) Las direcciones físicas se componen como:
+bits de PPN = bits físicos - offset = 30 bits - 10 bits = 20 bits
+[PPN: 20 bits | offset: 10 bits]
+Se componen de 30 bits, 20 bits + 10 bits de offset
+
+c) Número máximo de páginas virtuales: 2^(bits de VPN) = 2^(12 bits + 10 bits) = 2^(22 bits) = 2^22 págs.
+Número máximo de páginas físicas: 2^(bits de PPN) = 2^(20 bits) = 2^20 págs.
+
+d) Sabemos que la tabla de páginas de primer nivel tiene 2^12 = 4096 entradas.
+Cada entrada tiene un bit de validez y un una dirección que es un puntero a la tabla de segundo nivel. Esas son páginas físicas, y cada una guarda el PPN, que es 20 bits. Luego, el tamaño de cada entrada es 1 bit + 20 bits = 21 bits.
+Tamaño de la tabla de primer nivel = 4096 entradas * 21 bits/entrada = 86016 bits. Ahora, ceiling(86016 bits / 8) = 10752 bytes.
+Sabemos que la tabla de páginas de segundo nivel tiene 2^10 = 1024 entradas. Cada entrada tiene un bit de validez, un bit de modificado y el número de página física (PPN) que es 20.
+El tamaño de cada entrada es entonces 1 bit + 1 bit + 20 bits = 22 bits.
+Tamaño total de la tabla de segundo nivel = ceiling((1024 entradas * 22 bits/entrada) / 8) = 2816 bytes.
+Viendo el gráfico, la TBL tiene 5 entradas. Cada entrada guarda el bit de validez, el de modificado, el número de página virtual (VPN) que son 22 bits y el número de página física (PPN) que son 20 bits.
+Cada entrada es de tamaño de 1 bit + 1 bit + 22 bits + 20 bits = 44 bits.
+El tamaño total de la TBL es ceiling((5 entradas * 44 bits/entrada) / 8) = 28 bytes.
+Luego:
+Tamaño de TBL = 28 bytes.
+Tamaño de la tabla de primer nivel = 10752 bytes.
+Tamaño de la tabla de segundo nivel = 2816 bytes.
+
+e) Hacemos los cálculos.
+1. 0xffb00b18
+1111 1111 1011 0000 0000 1011 0001 1000
+offset = 0011 0001 1000 = 0x318
+VPN_Completo = 0011 1111 1110 1100 0000 0010 = 0x3fdc02
+Como el valor no está en la TBL, calculamos VPN1 y VPN2
+VPN1 = 1111 1111 1011 = 0xffb
+VPN2 = 0000 0000 0010 = 0x002
+
+Después de ver las tablas, obtenemos:
+PPN = 0x1d0 = 0000 0000 0001 1101 0000.
+Concatenando, obtenemos la siguiente dirección:
+0000 0000 0000 0111 0100 0011 0001 1000 = 0x00074318
+
+2. 0xffffc78f
+1111 1111 1111 1111 1100 0111 1000 1111
+offset = 0011 1000 1111 = 0x38f
+VPN_Completo = 0011 1111 1111 1111 1111 0001 = 0x3ffff1
+
+Después de ver las tablas, obtenemos:
+PPN = 0x5ff = 0000 0000 0101 1111 1111
+Concatenando, obtenemos la siguiente dirección:
+0000 0000 0001 0111 1111 1111 1000 1111 = 0x0017ff8f
+
+3. 0xffbff79f
+1111 1111 1011 1111 1111 0111 1001 1111
+offset = 0011 1001 1111 = 0x39f
+VPN_Completo = 0011 1111 1110 1111 1111 1101 = 0x3feffd
+Como el VPN_Completo no está en la TBL, calculamos VPN1 y VPN2
+VPN1 = 1111 1111 1011 = 0xffb
+VPN2 = 0011 1111 1101 = 0x3fd
+
+Despues de ver las tablas, obtenemos:
+PPN = 0x1de = 0001 1101 1110
+Sin embargo, el bit de validez es 0, por lo que la dirección no es válida. Se debe realziar un swap para que el SO pueda traducir la dirección.

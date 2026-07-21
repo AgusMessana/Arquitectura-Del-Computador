@@ -1,0 +1,6 @@
+Calculemos el error. Sabemos que (1.1)10 + (6.6)10 = (7.7)10
+(7.7)10 = (111.1011 0011 0011 0011 0011 0011 0011...)2
+Nuestro resultado de la suma, sin exponente, fue:
+(111.1011 0011 0011 0011 0011 0)2
+
+Error = (0.0000 0000 0000 0000 0000 0011 0011 0011...)2, que es aproximadamente igual a (0.0110011...)2 x 2^-20, que a su vez es aproximadamente 0.4 x 2^-20

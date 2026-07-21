@@ -1,0 +1,25 @@
+.data
+  a: .byte -99, 57
+  f: .float 7.5, 3.5
+  str: .asciz "%f %d\n"
+Suponer que la etiqueta a corresponde a la dirección de memoria 0x404028.
+
+Etiqueta    Dirección   Contenido   Comentario
+--------    ---------   ---------   ------------------
+a           0x404028    0x9d        # .byte -99
+            0x404029    0x39        # .byte 57
+f           0x40402A    0x00        # .float 7.5
+            0x40402B    0x00
+            0x40402C    0xf0
+            0x40402D    0x40
+            0x40402E    0x00        # .float 3.5
+            0x40402F    0x00
+            0x404030    0x60
+            0x404031    0x40
+str         0x404032    '%'         # .asciz "%f %d\n"
+            0x404033    'f'
+            0x404034    ' '
+            0x404035    '%'
+            0x404036    'd'
+            0x404037    '\n'
+            0x404038    '\0'

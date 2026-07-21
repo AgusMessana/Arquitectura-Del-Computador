@@ -1,0 +1,4 @@
+Como los operandos tienen signos diferentes, es imposible que se active la OF, así que de entrada tenemos que OF = 0.
+Si interpretamos el valor binario de -99 (1001 1101) como unsigned, ese valor nos da 157. El 57 se mantiene igual.
+Al sumar, nos da 214, que es menor a 255, no se produce acarreo. Luego, CF = 0.
+Conclusión: CF = OF = 0.

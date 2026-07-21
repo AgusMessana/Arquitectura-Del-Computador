@@ -1,0 +1,13 @@
+En la arquitectura x86-64 la instrucción call inserta automáticamente la dirección de retorno en la pila, pero en ARM esto no ocurre.
+Cuando se ejecuta la instrucción de salto bl promedio, el procesador ARM guarda la dirección de retorno en un registro interno específico.
+A su vez, como la función tiene solo tres parámetros float, los mismos entran en los registros s0, s1 y s2, por lo que no se guarda ningún argumento en la pila.
+Por ende, justo antes de que promedio ejecute su propio push {fp, lr} en su prólogo, la pila está exactamente igual a como la tenía el main. No hubo ninguna modificación. 
+Dirección             Contenido
+--------------        -------------------------------------
+...                   (Direcciones altas)
+0xBEFFF...08          Valor del frame pointer (fp) anterior
+0xBEFFF...04          Valor del Link Register (lr) original del main
+[sp] y [fp] --->      (Apunta al último elemento apilado por main)
+...                   (El resto de la pila hacia abajo está libre/vacío)
+
+El fp y el sp del diagrama apuntan a la base que el main armó en su prólogo, listos para que la función promedio empiece a expandir la pila hacia direcciones más bajas recién cuando ejecute su propio push.

@@ -1,0 +1,13 @@
+Tomar como valores iniciales rsp=0x7fffffffebc8 y rbp=0x1 al comenzar la ejecución del programa.
+
+Dirección          Contenido                rsp               rbp
+--------------     ---------------------    --------------    --------------
+(inicio)                                    0x7fffffffebc8    0x1
+0x7fffffffebc0     0x1                      0x7fffffffebc0    0x7fffffffebc0
+0x7fffffffebbc     char a (-99) [rbp-4]
+0x7fffffffebb8     char a+4 (57) [rbp-8]
+0x7fffffffebb0     float 7.5 [rbp-16]
+0x7fffffffeba8     float 3.5 [rbp-24]
+0x7fffffffeba0     (sin usar)               0x7fffffffeba0    0x7fffffffebc0
+0x7fffffffeb98     (retorno a main)         0x7fffffffeb98    0x7fffffffebc0
+0x7fffffffeb90     (0x7fffffffebc0)         0x7fffffffeb90    0x7fffffffeb90

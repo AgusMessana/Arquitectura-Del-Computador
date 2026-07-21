@@ -1,0 +1,24 @@
+Se decide optimizar el sistema de memoria virtual descrito en el ejercicio anterior mediante el uso de una TLB (Translation Lookaside Buffer) con 128 entradas.
+
+a) Dibuja la TLB. Asegúrate de etiquetar claramente todos los campos y dimensiones.
+                  TLB (128 entradas)
+        ┌─────┬──────────────┬──────────────────┐
+        │  V  │  VPN (38 b)  │   PPN (19 bits)  │
+        ├─────┼──────────────┼──────────────────┤
+entrada │  1  │  0x......    │    0x.....       │
+   0    │     │              │                  │
+        ├─────┼──────────────┼──────────────────┤
+entrada │  0  │   ...        │    ...           │
+   1    │     │              │                  │
+        ├─────┼──────────────┼──────────────────┤
+  ...   │ ... │   ...        │    ...           │
+        ├─────┼──────────────┼──────────────────┤
+entrada │  1  │  0x......    │    0x.....       │
+  127   │     │              │                  │
+        └─────┴──────────────┴──────────────────┘
+          1b      38 bits          19 bits
+
+b) ¿Cuánta memoria RAM se necesitaría para implementar la TLB descrita en el ejercicio anterior?
+bits por entrada = V + VPN + PPN = 1 bits + 38 bits + 19 bits = 58 bits
+bytes por entrada = ceiling(58 bits / 8) = 8 bytes
+RAM necesaria = 128 entradas x 8 bytes = 1024 bytes = 1 KB

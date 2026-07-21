@@ -1,0 +1,50 @@
+Considere un sistema de memoria virtual capaz de direccionar hasta 2^50 bytes, con un espacio de almacenamiento ilimitado en el disco duro, pero limitado a 2 GB de memoria RAM. Suponga que tanto las páginas virtuales como las físicas tienen un tamaño de 4 KB.
+
+Espacio virtual: 2^50 bytes
+RAM física: 2 GB = 2 * 2^30 bytes = 2^31 bytes
+Páginas virtuales y físicas: 4 KB = 4 * 2^10 bytes = 2^12 bytes = 4096 bytes.
+
+bits de offset = log₂(tamaño de página) = log₂(2^12 bytes) = 12 bits
+bits de dirección virtual = log₂(espacio virtual) = log₂(2^50 bytes) = 50 bits
+bits de dirección física = log₂(RAM física) = log₂(2^31 bytes) = 31 bits
+
+a) ¿Cuántos bits tienen las direcciones físicas?
+bits de las direcciones físicas = log₂(2^31 bytes) = 31 bits.
+
+b) ¿Cuál es el número máximo de páginas virtuales que puede tener el sistema?
+Número máximo de páginas virtuales = 2^(bits de VPN), donde bits de VPN = bits virtuales − bits de offset.
+bits de VPN = 50 bits - 12 bits = 38 bits
+Número máximo de páginas = 2^38 págs.
+
+c) Número máximo de páginas físicas (marcos) = 2^(bits de PPN), donde bits de PPN = bits físicos − bits de offset.
+bits de PPN = 31 bits - 12 bits = 19 bits.
+Número máximo de páginas físias = 2^19 págs.
+
+d) ¿Cuántos bits son necesarios para identificar los números de página en los espacios de direcciones virtual y física?
+Virtual: 38 bits.
+Físico: 19 bits.
+
+e) ¿Cuántas entradas tendrá la tabla de páginas?
+2^38 entradas.
+
+f) Suponga que cada entrada de la tabla de páginas incluye el número de página física, un bit de estado válido (V) y un bit de estado sucio (D). ¿Cuántos bytes ocupa cada entrada en la tabla de páginas? Redondee al número entero más cercano.
+Bytes por entrada = ceiling((19 bits + 1 + 1) / 8) = 3 bytes
+
+g) Realice un esquema del diseño de la tabla de páginas.
+Tabla de páginas
+        
+  VPN        │ V │ D │  PPN (19 bits)  │
+─────────────┼───┼───┼─────────────────┤
+  0x0000...0 │ 1 │ 0 │    0x.....      │  ← entrada 0
+  0x0000...1 │ 0 │ 0 │    ...          │  ← entrada 1
+  0x0000...2 │ 1 │ 1 │    0x.....      │  ← entrada 2
+     ...     │...│...│    ...          │
+  2^38 − 1   │ 0 │ 0 │    ...          │  ← última entrada
+─────────────┴───┴───┴─────────────────┘
+        
+  ← índice →   ↑ cada entrada ocupa 3 bytes (21 bits usados)
+   (38 bits)
+
+
+h) ¿Cuál es el tamaño total de la tabla de páginas en bytes?
+2^38 = 2^8 × 2^30 = 256 × 2^30 = 256 GB. Entonces 3 × 256 GB = 768 GB.

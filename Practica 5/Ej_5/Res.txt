@@ -1,0 +1,18 @@
+Supongamos un sistema de memoria virtual que está diseñando con un solo nivel de tabla de páginas. Este sistema admite direcciones virtuales de 25 bits, direcciones físicas de 22 bits y páginas de 2^16 bytes (64 KB). Cada entrada de la tabla de páginas contiene el número de página física, el bit de validez (V) y el bit sucio (D).
+
+tamaño de páginas = 64KB = 2^16 bytes
+
+bits de offset = log2(tamaño de página) = log2(2^16 bytes) = 16 bits
+bits de dirección virtual = 25 bits
+bits de dirección física = 22 bits
+
+a) ¿Cuántos bytes ocupa en total la tabla de páginas?
+bits de VPN = bits virtuales - bits de offset = 25 bits - 16 bits = 9 bits
+Cantidad de páginas = 2^(bits de VPN) = 2^9 págs.
+bits de PPN = bits físicos - bits de offset = 22 bits - 16 bits = 6 bits
+
+Byte de una entrada de la tabla de páginas = ceiling((PPN + D + V) / 8) = ceiling((6 bits + 1 bit + 1 bit) / 8) = 1 byte.
+Tamaño total de la tabla de páginas = Cantidad de páginas * Tamaño por entrada = 2^9 págs * 1 byte = 2^9 bytes = 512 bytes.
+
+b) El equipo de diseñadores del sistema operativo propone reducir el tamaño de la página de 64 a 16 KB, pero los ingenieros de hardware de su equipo se oponen debido al costo adicional del hardware. Explique el motivo de la objeción.
+Al reducir la página de 64 KB (2^16) a 16 KB (2^14), el offset baja de 16 a 14 bits, por lo que el VPN gana 2 bits y el número de entradas de la tabla se multiplica por 4 (de 2^9 a 2^11). La tabla de páginas pasa a ocupar 4 veces más memoria física. Como además hay una tabla por proceso, el costo total en RAM crece significativamente. Esa es la objeción de los ingenieros de hardware: páginas más chicas reducen la fragmentación interna, pero encarecen el almacenamiento de las tablas.

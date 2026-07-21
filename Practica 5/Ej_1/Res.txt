@@ -1,0 +1,14 @@
+a) Lectura: Segmento 0, Dirección 430.
+El acceso es válido, sin excepciones. La dirección física es 670
+
+b) Escritura: Segmento 0, Dirección 150.
+El acceso no es válido. Si bien el inicio es válido y el límite no está excedido, no hay permisos de escritura. Hay una excepción de protección.
+
+c) Lectura: Segmento 1, Dirección 15.
+El acceso es válido, sin excepciones. La dirección física es 2315.
+
+d) Escritura: Segmento 2, Dirección 130.
+El acceso no es válido. Si bien el inicio es válido, el límite está excedido. El tamaño es 100 y el offset es 130. Hay una excepción de límite.
+
+e) Ejecución: Segmento 4, Dirección 25.
+El acceso no es válido. El segmento 4 no tiene dirección de inicio asignada, no hay base física, así que no está cargado en memoria. Hay una excepción de segmento.

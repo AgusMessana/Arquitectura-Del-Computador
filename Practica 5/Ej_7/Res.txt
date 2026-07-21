@@ -1,0 +1,71 @@
+Se tiene un sistema de memoria virtual con paginación de dos niveles que puede direccionar un total de 2^32 bytes. El primer nivel tiene 12 bits en el primer nivel y 10 bits en el segundo nivel. Tiene 1 GB de memoria principal con páginas virtuales y físicas de 1 KB.
+
+Espacio virtual = 2^32 bytes
+Nivel 1: 12 bits
+Nivel 2: 10 bits
+Memoria principal = 1 GB = 2^30 bytes
+Páginas virtuales y físicas = 1 KB = 2^10 bytes
+
+bits de offset = log2(tamaño de página) = log2(2^10 bytes) = 10 bits
+bits de dirección virtual = log2(espacio virtual) = log2(2^32 bytes) = 32 bits
+bits de dirección física = log2(espacio físico) = log2(2^30 bytes) = 30 bits
+
+a) ¿Cuántos bits tienen las direcciones virtuales?
+Las direcciones virtuales tienen 32 bits.
+
+b) Indicar cómo están compuestas la direcciones virtuales.
+bits de VPN = bits virtuales - bits de offset = 32 bits - 10 bits = 22 bits
+Formato = [VPN1: 12 bits | VPN2: 10 bits | offset: 10 bits]
+
+c) ¿Cuántos bits tienen las direcciones físicas?
+Las direcciones físicas tienen 30 bits.
+
+d) Indicar cómo están compuestas las direcciones físicas.
+bits de PPN = bits físicos - bits de offset = 30 bits - 10 bits = 20 bits
+Formato = [PPN: 20 bits | offset: 10 bits]
+
+e) ¿Cuál es el número máximo de páginas virtuales en el sistema?
+Número máximo de páginas virtuales = 2^(bits de VPN) = 2^(12 bits + 10 bits) = 2^(22 bits) = 2^22 págs.
+
+f) ¿Cuál es el número máximo de páginas físicas en el sistema?
+Número máximo de páginas físicas = 2^(bits de PPN) = 2^(20 bits) = 2^20 págs.
+
+g) Con base en el contenido de la TLB y las tablas de páginas de un proceso, indique la dirección de memoria física correspondiente a las siguientes direcciones virtuales:
+1. 0xffb00b18
+1111 1111 1011 0000 0000 1011 0001 1000
+VPN_Completo = 0011 1111 1110 1100 0000 0010 = 0x3fdb02
+Como el VPN_Completo no está en la TBL, calculanos VPN1 y VPN2.
+VPN1 = 1111 1111 1011 = 0xffb
+VPN2 = 0000 0000 0010 = 0x002
+offset = 0011 0001 1000 = 0x318
+
+Después de chequear las tablas, obtenemos:
+PPN = 0x1D0 = 0000 0000 0001 1101 0000
+(Extendemos el valor pues las dirdcciones físicas tienen 30 bits: 20 de PPN y 10 de offset)
+
+Concatenando, obtenemos la siguiente dirección física:
+0000 0000 0000 0111 0100 0011 0001 1000 = 0x00074318
+
+2. 0xffffc78f
+1111 1111 1111 1111 1100 0111 1000 1111
+VPN_Completo = 0011 1111 1111 1111 1111 0001 = 0x3ffff1
+offset = 0011 1000 1111 = 0x38f
+
+Después de chequear las tablas, obtenemos:
+PPN = 0x5ff = 0000 0000 0101 1111 1111
+
+Concatenando, obtenemos la siguiente dirección física:
+0000 0000 0001 0111 1111 1111 1000 1111 = 0x0017ff8f
+
+3. 0xffbff79f 
+1111 1111 1011 1111 1111 0111 1001 1111
+offset = 0011 1001 1111 = 0x39f
+VPN_Completo = 0011 1111 1110 1111 1111 = 0x3feff
+Como VPN_Completo no está en la TBL, calculamos VPN1 y VPN2
+VPN1 = 1111 1111 1011 = 0xffb
+VPN2 = 0011 1111 1101 = 0x3fd
+
+Después de chequear las tablas, obtenemos:
+PPN = 0x1de
+Sin embargo, el bit de validez es 0, por lo que la dirección no es válida.
+La dirección no se puede traducir en este momento. El SO debe realizar un swap: traer la página desde la memoria secundaria (disco) a la RAM, actualizar la tabla de páginas (V=1), y recién entonces reintentar la traducción.

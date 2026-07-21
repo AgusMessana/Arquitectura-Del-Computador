@@ -1,0 +1,50 @@
+Dado un sistema que emplea un esquema de paginación con las siguientes características:
+* El espacio de memoria virtual puede direccionar 2^48 bytes.
+* El tamaño de página es de 4 KB = 4 * 2^10 = 2^12.
+* La memoria física es de 64 MB (226 bytes).
+* Para un determinado proceso se tiene la siguiente TLB y la siguiente tabla de paginación (se muestra solo un fragmento (en la práctica))
+
+a) ¿Cuál es el formato de las direcciones virtuales? Especificar el tamaño de los campos y su significado.
+bits de offset = log2(tamaño de páginas) = log2(2^12 bytes) = 12 bits.
+bits totales de dirección virtual = log2(espacio virtual) = log2(2^48 bytes) = 48 bits.
+bits de VPN = 48 bits - 12 bits = 36 bits
+Formato de campo: [VPN: 36 bits | offset: 12 bits]. Total: 48 bits
+
+Campo 1: número de página virtual (VPN):
+Tamaño: 36 bits
+Significado: identifica cuál de las páginas virtuales es. Es lo que se usa para buscar en la TLB / tabla de páginas y traducir a un marco físico.
+
+Campo 2: desplazamiento (offset):
+Tamaño: 12 bits
+Significado: identifica qué byte dentro de la página es. No se traduce, pasa igual a la dirección física.
+
+b) Indicar la cantidad de páginas virtuales y de páginas físicas que se pueden direccionar.
+Páginas virtuales = 2^(bits VPN) = 2^36
+bits PPN = bits físicos − offset = log2(2^26 bytes) − 12 bits = 26 bits − 12 bits = 14 bits
+Páginas físicas = 2^(bits PPN) = 2^14
+
+c) Atendiendo al contenido de la TLB y de la tabla de p´aginas de un proceso mostradas previamente, indicar la dirección de memoria física accedida para las siguientes direcciones virtuales:
+
+1. 0x401136
+VPN = 0x401
+offset = 0x136
+nro. de página física = 0xb000
+dirección física accedida = 0xb136
+
+2. 0x404030
+VPN = 0x404
+offset = 0x030
+nro. de página física = 0x1000
+dirección física accedida = 0x1030
+
+3. 0x7fffffffebb8
+VPN = 0x7fffffffe
+ofsset = 0xbb8
+nro. de página física = 0x3000
+dirección física accedida = 0x3bb8
+
+4. 0x7fffffffebbc
+VPN = 0x7fffffffe
+offset = 0xbbc
+nro. de página física = 0x3000
+dirección física accedida = 0x3bbc

@@ -1,0 +1,21 @@
+Programa A, que requiere un total de 4300 bytes.
+Programa B, que requiere un total de 3068 bytes.
+El sistema utiliza paginación con páginas de 128 bytes, y tanto las direcciones virtuales como las físicas son de 16 bits.
+
+a) ¿Cuántas páginas requerirá cada proceso?
+Programa A: se requiern ceiling(4300 bytes / 128 bytes) = 34 págs.
+Programa B: se requieren ceiling(3068 bytes / 128 bytes) = 24 págs.
+
+b) ¿Cuánto espacio se desperdicia por fragmentación interna y externa en cada programa?
+Por fragmentación interna = (páginas x tamaño_página) - tamaño_programa
+Programa A:
+Por fragmentación interna: (34 págs x 128 bytes) - 4300 bytes = 52 bytes
+Por fragmentación externa: 0 bytes (no hay) pues al tener un tamaño de página fijo, cualquier marco libre es utilizable.
+Programa B:
+Por fragmentación interna: (24 págs x 128 bytes) - 3068 bytes = 4 bytes
+Por fragmentación externa: 0 bytes (no hay) pues al tener un tamaño de página fijo, cualquier marco libre es utilizable.
+
+c) Suponiendo que se usa una tabla de paginación de un solo nivel, ¿qué tamaño tendrá cada tabla si cada entrada ocupa 8 bytes?
+tamaño_tabla = (cantidad de páginas virtuales) × (tamaño de cada entrada)
+Cantidad de páginas virtuales: 2^16 bytes / 128 bytes/págs = 2^16 págs / 2^7 bytes = 2^9 págs = 512 págs
+El tamaño de la tabla de ambos programas es de 2^9 págs x 8 bytes = 2^9 págs x 2^3 bytes = 2^12 bytes = 4096 bytes = 4 KB
